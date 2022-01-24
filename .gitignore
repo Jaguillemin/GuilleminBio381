@@ -1,0 +1,6 @@
+#List of files untracked
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.pdf

@@ -1,0 +1,14 @@
+---
+title: 'Homework #2'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+###1/26/22
+Here is my Homework 2! Which will be added as a link to my main website.
+
+Fun Fact: I live with a cat that can say hello!
+
+

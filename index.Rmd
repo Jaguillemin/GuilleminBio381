@@ -7,10 +7,15 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-##### Jacqueline Guillemin
-Hello! This is the website where you will find all my super awesome Computational Biology Projects!
+Computational Biology
+
+## Jacqueline Guillemin
+Hello! This is the website where you will find all my **super awesome** Computational Biology Projects!
+
+
 
 
 Homeworks:
-Link to [Homework #2](Homework_02.html)
+
+[Homework #2](Homework_02.html)
 

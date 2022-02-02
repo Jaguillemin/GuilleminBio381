@@ -1,0 +1,37 @@
+---
+title: "Homework_3"
+output: html_document
+---
+
+1. First question text: Myrmica lobrifons
+
+```
+Find:(\w)(\w+) (\w+)
+Replace:\1 \3
+```
+
+Just \w catches the first letter of the genus, \w+ catches the species name. When replacing you use \# (Number of which find command in parentheses), in the order you would like them to be replaced.
+
+2. The second question text:
+
+First String    Second      1.22      3.4
+Second          More Text   1.555555  2.2220
+Third           x           3         124
+
+```
+Find:(\S+) \s+
+Replace:\1,
+```
+The (\S+) collects non-whites space characters with more then a single character, this allows me to keep the words with single spaces in them with replacing \1. The \s+ allows me to take all the spaces and replace them with , .
+
+3. The third question text:
+
+Ballif, Bryan, University of Vermont
+Ellison, Aaron, Harvard Forest
+Record, Sydne, Bryn Mawr
+
+```
+Find:
+Replace:
+```
+

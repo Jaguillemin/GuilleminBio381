@@ -1,0 +1,94 @@
+---
+title: "MyFirstMarkdown"
+output:
+  html_document: 
+    theme: cosmo
+  pdf_document: default
+  word_document: default
+---
+
+Add text here, just use it like a typewriter, and add as much or little as you'd like.
+
+Second line of text.
+
+Jacqueline 
+
+Bio Dept   
+UVM   
+
+
+Use two or more blank spaces at the end of a single-spaced line
+
+# First level of header
+
+## Second level header
+
+### Third header
+
+# Basic text formatting
+
+Italic *Text*
+
+Bold **Text**
+
+Subscript~text~ 
+
+Superscript^Text^
+
+Strikethrough~~Text~~
+
+# Lists
+
+* Item 1
+* Item 2
+    + Item 2a
+    + Item 2b
+    
+1. Item 1
+2. Item 2
+3. Item 3
+  + Item 3a
+  + Item 3b
+  
+In line fencing with a backtick ` like this is a good *example* of this ` Can help make things more obvious.
+
+In line execuation of r cose inside the backticks by inserting r as the first element `r 3+pi` 
+
+Last kind of fencing we can use, 3 backticks for a whole section 
+``` 
+here it is being free and wild on its own
+
+```
+# Block qoutes `>`
+
+> to be or not to be, calculus taught me this
+
+#Spacer line with 3 or more underscores
+
+___
+
+Add a line between text
+
+#Links
+
+http://example.com
+
+[linked phrase](http://example.com)
+
+
+
+A [linked phrase][id]. 
+
+At the bottom of the document:
+
+[id]: http://example.com/ "Title"
+
+
+First Header  | Second Header
+------------- | -------------
+Content Cell  | Content Cell
+Content Cell  | Content Cell
+Reference Style 
+
+
+

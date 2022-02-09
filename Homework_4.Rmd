@@ -1,0 +1,117 @@
+---
+title: "Homework_4"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## vector review
+
+1D form of data. 
+
+The forms are:
+
+Numeric/integer/double
+
+a<-c(10:30)
+
+Character
+
+b<- c("Carrots","Lettuce", "Tomatoes")
+
+Binary/boolean/logical
+
+c<-c(TRUE,TRUE,FALSE)
+
+typeof(c)
+
+
+R gets confused here and chooses a data type for you
+
+d<-c(4,8.1,"yellow,FALSE)
+
+
+# Start of homework 4
+
+1.
+
+```{r}
+x<-1.1
+a<-2.2
+b<-3.3
+
+z1<-x^a^b
+z2<-(x^a)^b
+z3<-3*x^3+2*x^2+1
+
+```
+
+2.
+```{r}
+z<-seq(from=1, to=8,by=1)
+x<-seq(from=7, to=1,by=-1)
+
+a<-c(z,x)
+
+b<-rep(1,1)
+c<-rep(2,2)
+d<-rep(3,3)
+e<-rep(4,4)
+f<-rep(5,5)
+
+g<-c(b,c,d,e,f)
+
+h<-rep(5,1)
+i<-rep(4,2)
+j<-rep(3,3)
+k<-rep(2,4)
+l<-rep(1,5)
+
+m<-c(h,i,j,k,l)
+
+
+```
+
+3.
+
+```{r}
+x<-(5)
+y<-(11)
+theta<-atan(x/y)#finds theta
+
+r<-sqrt(x^2+y^2)
+```
+
+4.
+```{r}
+queue<- c("sheep", "fox", "owl", "ant")
+queue<-append(queue,"snake",after={4})#adds snake after ant
+
+queue<-queue[!queue %in% c("sheep")]#removes sheep 
+
+queue<-append(queue,"donkey",after=0)#adds donkey to the front
+
+queue<-queue[!queue %in% c("snake")] #removes snake
+
+queue<-queue[!queue %in% c("owl")]#removes owl
+
+queue<-append(queue, "aphid", after=2)#adds aphid after fox and before ant
+
+which(queue=="aphid")#find aphid
+
+
+print(queue)
+
+
+```
+
+5.
+
+```{r}
+x<-seq(from=1, to=100)
+x[x%%2!=0 &x%%3!=0 &x%%7!=0]
+
+```
+

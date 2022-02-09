@@ -1,0 +1,46 @@
+\documentclass{article}
+
+\begin{document}
+%in latex we use percent sign for comments
+
+%%remove asterisks for numbered titles :
+
+\section{Main Title}
+
+\subsection*{Second level title}
+
+\subsubsection{Third level title}
+
+Fortunately, most of what you do for writing in \LaTeX actually follows rules of plain text. 
+%the double back slash will avoid the double carriage return.
+Here is \textbf{boldface}\\
+Here is \textit{Italic}\\
+Here is \texttt{plain text}
+
+%qoutations
+`` two back ticks to start, two single qoutes to end it''.
+
+\begin{enumerate}
+\item point one
+\item point two
+\end{enumerate}
+
+\begin{verbatim}
+Text here is literal. with no formatting signs. 
+careful there are also no margins.%This means no carriage return.
+\end{verbatim}
+
+\begin{quote}
+This indents a quote
+\end{quote}
+
+
+<<echo=TRUE>>=
+x<-runif(10)
+y<-runif(10)
+#comments with a hashtag
+print(x)
+plot(x,y)
+@
+
+\end{document}

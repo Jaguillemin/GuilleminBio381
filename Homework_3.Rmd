@@ -34,4 +34,48 @@ Record, Sydne, Bryn Mawr
 Find:
 Replace:
 ```
+4. The forth question text:
+
+0001 Georgia Horseshoe.mp3 0002 Billy In The Lowground.mp3 0003 Cherokee Shuffle.mp3 0004 Walking Cane.mp3
+
+```
+Find:(\.\w+)\s*
+Replace:(\1)\n
+```
+Then,
+
+```
+Find:(\d{4,}) (\w+\s+\w+\s+\w+\s+\w+)
+Replace:\2_\1
+```
+next,
+
+```
+Find:(\d{4,}) (\w+\s+\w+)
+Replace:\2_\1
+```
+
+This process has multiple steps, first you must add "carriage returns" between each song. To do this I captured the end of the sentence with (\.\w+)\s* , and added the carriage return with (\1)\n . Then I took the longest song name and converted it so that the number was behind the song title, but before the period. To do this I captured the 4 digits at the beginning of the title, then captured the word characters of the song and spaces after. I replaced these by switching the order of the digits and word characters and adding an _ between them.
+
+5. The fifth question text: 
+
+Camponotus,pennsylvanicus,10.2,44
+Camponotus,herculeanus,10.5,3
+Myrmica,punctiventris,12.2,4
+Lasius,neoniger,3.3,55
+
+```
+Find:(\w)(\w+)\,(\w+)\,(\d+)\.\d+
+Replace:\1_\3
+```
+
+In this problem the first letter must be captured, (\w), then the comma replaced by finding it, the next entire word must be saved (\w+), another comma removal, capture the first digit to remove it, and find the period and next digit to remove it, then leave out the final comma and digit.
+
+6. The sixth question uses the same text as question 5.
+
+```
+Find:
+Replace:
+```
+
 

@@ -88,7 +88,62 @@ First Header  | Second Header
 ------------- | -------------
 Content Cell  | Content Cell
 Content Cell  | Content Cell
-Reference Style 
 
 
+# Latex code for equations
 
+we set off equations with '$' for brackets
+## I-line Equations
+
+these equations such as $a = 3 + 4$ will appear in a single line of text.
+
+these equations such as $$a = 3 + 4$$ will not appear in a separate line.
+
+## Subscripts
+
+$$H_0 = z_{a + b}$$
+
+## Superscripts 
+
+$$ S = cA^z$$
+
+Elements can be coupled and nested
+
+$$ S=cA^z_1+z_{2+x}$$
+
+## Fractions and Greek Symbols
+
+$$\alpha=\frac{\beta}{\delta + \gamma_x}$$
+
+## Summations Signs
+
+$$z=\sum_{i=1}^x{k}$$
+
+## Escape the backslash with a custom term
+
+$$\backslash \alpha \le b \backslash$$
+
+## Rendering plaintext in a LaTex
+
+$$P(Occurances of Species A) =Z$$
+
+$$P(\mbox{Occurance of Species A})=z$$
+
+##chuncks of R code in markdown
+
+```{r,echo=TRUE,eval=TRUE}
+
+#Include yo comments
+#preliminaries 
+library(ggplot2)
+pred<--seq(1,10) #factor of 10 integers
+
+res<--runif(10) # Random uniform values
+
+## print the random number
+print(res)
+
+#Plot the graph
+qplot(x=pred,y=res)
+```
+Now back to writing text in our mark doc, including LateX eq. if we need these such as $a+b$ inserted in the middle of my sentence.

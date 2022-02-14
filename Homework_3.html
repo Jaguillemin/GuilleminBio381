@@ -185,8 +185,12 @@ Replace:\1,</code></pre>
 <li>The third question text:</li>
 </ol>
 <p>Ballif, Bryan, University of Vermont Ellison, Aaron, Harvard Forest Record, Sydne, Bryn Mawr</p>
-<pre><code>Find:
-Replace:</code></pre>
+<pre><code>Find:(\w+)\,\s(\w+)\,\s(\w+\s\w+\s\w+)
+Replace:\2 \1 \(\3\)</code></pre>
+<p>Then use</p>
+<pre><code>Find:(\w+)\,\s(\w+)\,\s(\w+\s\w+)
+Replace\2 \1 \(\3\)</code></pre>
+<p>These two steps capture each word as a single group, then can be manipulated in the replace to switch the order of the names and add the parentheses, omitting the commas.</p>
 <ol start="4" style="list-style-type: decimal">
 <li>The forth question text:</li>
 </ol>

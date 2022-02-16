@@ -1,0 +1,61 @@
+---
+title: "Homework_5"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+Question 1
+
+```{r}
+n_dims<-runif(1, min=3, max=10)
+print(n_dims)
+# a single random number and output
+n_dims2<-(1:n_dims^2)
+print(n_dims2)
+# creates a vector starting at one and ending with the square of the OG random number
+rn_dims2<- sample(n_dims2)
+#randomizes the vector
+keanu<-matrix(data=rn_dims2)
+print(keanu)
+#makes a square vector
+t(keanu)
+```
+
+
+2.
+
+
+```{r}
+my_vec<-runif(16, min=0, max=1)
+my_matrix<- matrix(data=my_vec, nrow=4)
+print(my_matrix)
+#gives 4X4 matrix of random numbers
+#my_lvec<-runif(100, min=5, max=50)
+#my_logical<- is.logical
+#print(100>my_logical)
+my_letters<- letters
+print(my_letters)
+my_list1<-list(my_matrix,my_letters)
+print(my_list1)
+str(my_list1)
+
+my_list2<-list(my_matrix[[2,2]],my_letters[[2]])
+print(my_list2)
+typeof(my_list2)
+```
+
+
+3.
+
+```{r}
+my_unis<- runif(26, min=0,max=10)
+my_letters<- LETTERS
+my_dataframe<- data.frame(my_unis,my_letters, stringsAsFactors = FALSE)
+print(my_dataframe)
+#my_dataframe<- sample(4, size=26,replace=FALSE,)
+#print(my_dataframe)
+```

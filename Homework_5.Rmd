@@ -19,10 +19,12 @@ print(n_dims2)
 # creates a vector starting at one and ending with the square of the OG random number
 rn_dims2<- sample(n_dims2)
 #randomizes the vector
-keanu<-matrix(data=rn_dims2)
-print(keanu)
-#makes a square vector
-t(keanu)
+#keanu<- matrix(data=rn_dims2)
+#keanu<- 
+#print(keanu)
+#makes a square vector(?)
+#t(keanu)
+#sum([1,] )
 ```
 
 
@@ -30,24 +32,27 @@ t(keanu)
 
 
 ```{r}
-my_vec<-runif(16, min=0, max=1)
+my_vec<-runif( 16, min=0, max=1)
 my_matrix<- matrix(data=my_vec, nrow=4)
 print(my_matrix)
 #gives 4X4 matrix of random numbers
 #my_lvec<-runif(100, min=5, max=50)
-#my_logical<- is.logical
-#print(100>my_logical)
+my_logicalv<- runif(100 ,min=1, max=100)
+print(my_logicalv)
+my_logicalv<33 
+my_logical<-
 my_letters<- letters
 print(my_letters)
 my_list1<-list(my_matrix,my_letters)
 print(my_list1)
 str(my_list1)
-
 my_list2<-list(my_matrix[[2,2]],my_letters[[2]])
 print(my_list2)
 typeof(my_list2)
+unrolled<-unlist(my_list2)
+print(unrolled)
+typeof(unrolled)
 ```
-
 
 3.
 

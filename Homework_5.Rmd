@@ -57,10 +57,21 @@ typeof(unrolled)
 3.
 
 ```{r}
+set.seed(10)
+
 my_unis<- runif(26, min=0,max=10)
 my_letters<- LETTERS
 my_dataframe<- data.frame(my_unis,my_letters, stringsAsFactors = FALSE)
 print(my_dataframe)
-#my_dataframe<- sample(4, size=26,replace=FALSE,)
-#print(my_dataframe)
+my_dataframe[c(1,5,6,12),'my_unis']<-NA
+#Not random variables but picks 4
+complete.cases(my_dataframe)
+which(!complete.cases(my_dataframe))
+#shows which are NA
+print(my_dataframe)
+#already in alphabet?
+mean('my_unis')
+
 ```
+
+

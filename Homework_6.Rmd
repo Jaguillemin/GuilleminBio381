@@ -1,0 +1,104 @@
+---
+title: "Homework_6"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+#Practice data
+
+```{r}
+library(ggplot2)
+library(MASS)
+new_data<- read.table(file='./Data_Homework_6/JAEDataArchiveNewsomeRipple.csv' , header=TRUE, sep=",", comment.char="#")
+str(new_data)
+
+```
+
+addition of data set from suggested website
+
+
+```{r}
+p1 <- ggplot(data=new_data, aes(x=CoyotePrice, y=..density..)) +
+  geom_histogram(color="grey60",fill="cornsilk",size=0.2) 
+print(p1)
+```
+
+
+```{r}
+normPars <- fitdistr(new_data$CoyotePrice,"normal")
+print(normPars)
+str(normPars)
+normPars$estimate["mean"] # note structure of getting a named attribute
+```
+
+
+
+```{r}
+meanML <- normPars$estimate["mean"]
+sdML <- normPars$estimate["sd"]
+
+xval <- seq(0,max(new_data$CoyotePrice),len=length(new_data$CoyotePrice))
+
+ stat <- stat_function(aes(x = xval, y = ..y..), fun = dnorm, colour="red", n = length(new_data$CoyotePrice), args = list(mean = meanML, sd = sdML))
+ p1 + stat
+```
+
+#```{r}
+stat3 <- stat_function(aes(x = xval, y = ..y..), fun = dunif, colour="darkgreen", n = length(new_data$CoyotePrice), args = list(min=min(new_data$CoyotePrice), max=max(new_data$CoyotePrice)))
+ p1 + stat + stat2 + stat3
+```
+
+```{r}
+gammaPars <- fitdistr(new_data$CoyotePrice,"gamma")
+shapeML <- gammaPars$estimate["shape"]
+rateML <- gammaPars$estimate["rate"]
+
+stat4 <- stat_function(aes(x = xval, y = ..y..), fun = dgamma, colour="brown", n = length(new_data$CoyotePrice), args = list(shape=shapeML, rate=rateML))
+ p1+ stat4
+```
+
+Gamma fits this data the best.
+
+# Simulate new data
+
+```{r}
+s<-rnorm(n=4680,mean=37.5)
+s <- data.frame(1:4680,s)
+names(s) <- list("A","B")
+s <- s[s$B>0,]
+str(s)
+summary(s$B)
+```
+
+xval
+
+
+```{r}
+p2 <- ggplot(data=s, aes(x=B, y=..density..)) +
+  geom_histogram(color="grey60",fill="cornsilk",size=0.2) 
+print(p2)
+```
+```{r}
+meanML <- normPars$estimate["mean"]
+sdML <- normPars$estimate["sd"]
+
+qval <- seq(0,max(s$B),len=length(s$B))
+
+
+```
+
+
+```{r}
+gammaPars <- fitdistr(s$B,"gamma")
+shapeML <- gammaPars$estimate["shape"]
+rateML <- gammaPars$estimate["rate"]
+
+stat4 <- stat_function(aes(x = qval, y = ..y..), fun = dgamma, colour="brown", n = length(s$B), args = list(shape=shapeML, rate=rateML))
+ p1  + stat4
+```

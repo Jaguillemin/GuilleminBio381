@@ -1,0 +1,51 @@
+---
+title: "Homework_7"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(tidyverse)
+data(iris)
+class(iris)
+glimpse(iris)
+#This is a dataframe with 5 columns and 150 rows
+head(iris)
+str(iris)
+
+iris1<- filter(iris, Species %in% c("versicolor" , "virginica"), Sepal.Length > 6, Sepal.Width > 2.5)
+glimpse(iris1)
+#56 observations, 5 variables
+
+iris2<- select(iris1, Species, Sepal.Length, Sepal.Width)
+#56 observations, 3 variables
+iris3 <- arrange( iris2, Sepal.Length)
+head(iris3)
+iris4<- mutate(iris3, Sepal.Area= Sepal.Length*Sepal.Width)
+# 56 observations, 4 variables
+glimpse(iris4)
+iris5<- summarize(iris4, Mean.Width= mean(Sepal.Width), Mean.Length= mean(Sepal.Length), Mean.Area=mean(Sepal.Area), TotalNumber=n())
+print(iris5)
+
+iris6<- group_by(iris4, Species)
+summarize(iris6, Mean.Width= mean(Sepal.Width), Mean.Length= mean(Sepal.Length))
+print(iris6)
+
+iris %>%
+  filter(Species %in% c("versicolor" , "virginica"), Sepal.Length > 6, Sepal.Width > 2.5) %>%
+  select(Species, Sepal.Length,Sepal.Width) %>%
+  arrange(Sepal.Length) %>%
+  mutate(Sepal.Area=Sepal.Length*Sepal.Width) %>%
+  summarize(Mean.Width= mean(Sepal.Width), Mean.Length= mean(Sepal.Length), Mean.Area=mean(Sepal.Area), TotalNumber=n())
+#now i need to get back to the previous pipe data
+  
+#iris %>%
+#  pivot_longer(cols=Species:Sepal.Length:Sepal.Width, names_to="Species","Measure", "Value" , values_to= )
+
+
+```
+

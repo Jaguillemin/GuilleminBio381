@@ -19,12 +19,21 @@ print(n_dims2)
 # creates a vector starting at one and ending with the square of the OG random number
 rn_dims2<- sample(n_dims2)
 #randomizes the vector
-#keanu<- matrix(data=rn_dims2)
-#keanu<- 
-#print(keanu)
-#makes a square vector(?)
-#t(keanu)
-#sum([1,] )
+keanu<- matrix(data=rn_dims2,nrow=n_dims, n_dims)
+print(keanu)
+#makes a square matrix
+t(keanu)
+print(keanu)
+sum(keanu[1,1:n_dims])
+mean(keanu[1,1:n_dims])
+
+sum(keanu[n_dims,1:n_dims]) 
+mean(keanu[n_dims,1:n_dims])
+
+eigen(keanu)
+#Imaginary sums
+typeof(eigen(keanu))
+#list
 ```
 
 
@@ -57,19 +66,25 @@ typeof(unrolled)
 3.
 
 ```{r}
-set.seed(10)
 
 my_unis<- runif(26, min=0,max=10)
-my_letters<- LETTERS
+my_letters<- sample(LETTERS)
 my_dataframe<- data.frame(my_unis,my_letters, stringsAsFactors = FALSE)
+
 print(my_dataframe)
-my_dataframe[c(1,5,6,12),'my_unis']<-NA
-#Not random variables but picks 4
+
+
+
+my_dataframe$my_unis[sample(my_unis,4)]<-NA
+print(my_dataframe)
+
 complete.cases(my_dataframe)
 which(!complete.cases(my_dataframe))
 #shows which are NA
 print(my_dataframe)
-#already in alphabet?
+
+my_dataframe<- my_dataframe[order(my_dataframe$my_letters),]
+
 mean('my_unis')
 
 ```

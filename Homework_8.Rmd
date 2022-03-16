@@ -1,0 +1,39 @@
+---
+title: "Homework 8"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+library(MASS)
+library(dplyr)
+
+# Example data set of Eye- Diameter at 72hpf
+wt_e <- rnorm(n=30 , mean=290 , sd=50)
+
+
+null_e <-rnorm( n=30 , mean=240 , sd=50)
+
+
+
+
+eye_size_df <- data.frame(WTeyesize = wt_e , Nulleyesize = null_e)
+
+str(eye_size_df)
+
+#make long
+
+# then evalute the group(wt/null)~ value(eyesize)
+one.way <-aov(Nulleyesize~WTeyesize, data= eye_size_df)
+
+summary(one.way) 
+
+
+
+```

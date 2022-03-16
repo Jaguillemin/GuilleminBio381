@@ -40,11 +40,13 @@ iris %>%
   select(Species, Sepal.Length,Sepal.Width) %>%
   arrange(Sepal.Length) %>%
   mutate(Sepal.Area=Sepal.Length*Sepal.Width) %>%
-  summarize(Mean.Width= mean(Sepal.Width), Mean.Length= mean(Sepal.Length), Mean.Area=mean(Sepal.Area), TotalNumber=n())
-#now i need to get back to the previous pipe data
+  summarize( Mean.Width= mean(Sepal.Width), Mean.Length= mean(Sepal.Length)) %>%
+  {irisFinal <<- .}
   
-#iris %>%
-#  pivot_longer(cols=Species:Sepal.Length:Sepal.Width, names_to="Species","Measure", "Value" , values_to= )
+  
+iris %>%
+  pivot_longer(cols=Sepal.Length:Sepal.Width:Petal.Length:Petal.Width, names_to ="Measure") %>%
+  {longer_iris <<- .}
 
 
 ```

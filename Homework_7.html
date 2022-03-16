@@ -267,13 +267,15 @@ summarize(iris6, Mean.Width= mean(Sepal.Width), Mean.Length= mean(Sepal.Length))
   select(Species, Sepal.Length,Sepal.Width) %&gt;%
   arrange(Sepal.Length) %&gt;%
   mutate(Sepal.Area=Sepal.Length*Sepal.Width) %&gt;%
-  summarize(Mean.Width= mean(Sepal.Width), Mean.Length= mean(Sepal.Length), Mean.Area=mean(Sepal.Area), TotalNumber=n())</code></pre>
-<pre><code>##   Mean.Width Mean.Length Mean.Area TotalNumber
-## 1   3.041071    6.698214  20.40464          56</code></pre>
-<pre class="r"><code>#now i need to get back to the previous pipe data
+  summarize( Mean.Width= mean(Sepal.Width), Mean.Length= mean(Sepal.Length)) %&gt;%
+  {irisFinal &lt;&lt;- .}
   
-#iris %&gt;%
-#  pivot_longer(cols=Species:Sepal.Length:Sepal.Width, names_to=&quot;Species&quot;,&quot;Measure&quot;, &quot;Value&quot; , values_to= )</code></pre>
+  
+iris %&gt;%
+  pivot_longer(cols=Sepal.Length:Sepal.Width:Petal.Length:Petal.Width, names_to =&quot;Measure&quot;) %&gt;%
+  {longer_iris &lt;&lt;- .}</code></pre>
+<pre><code>## Warning in x:y: numerical expression has 2 elements: only the first used</code></pre>
+<pre><code>## Warning in x:y: numerical expression has 3 elements: only the first used</code></pre>
 
 
 

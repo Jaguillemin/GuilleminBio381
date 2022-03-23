@@ -1,0 +1,95 @@
+---
+title: "Homework_9"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+```{r}
+
+#Description-------------------
+# This is a re-work of the eye size data I created in homework 8 using structural programming
+ #  23 Mar 2022
+ #JAG
+ #-----------------------------
+ 
+ #Intialize------------------
+ library(tidyverse)
+ #set.seed(100)
+ 
+ #Load Functions--------------
+ ###############################
+ #FUNCTION:createDataframe
+ # purpose:To take eyesize data and set them to adjust the size,mean, and SD affects the output
+ # input: variables of eye size
+ # output: a long dataframe that can be manipulated
+ #------------------------------
+createDataframe <- function(size=30, meanWT=290 , meanN= 240, sd=50 )
+  {
+
+eye_size_df <- data.frame (WTeyesize = rnorm(n=size, mean=meanWT, sd=sd),
+  Nulleyesize = rnorm(n=size, mean=meanN, sd=sd))
+
+   
+
+
+long_df <- eye_size_df %>%
+      pivot_longer(cols=WTeyesize:Nulleyesize, names_to= "Genotype" , values_to= "EyeSize")
+return(long_df)
+
+}
+ 
+ data<-createDataframe()
+ 
+###############################
+#FUNCTION: performAnova
+# purpose: To perform a statistical analysis on the data
+# input: an x variable and y variable 
+# output : the summary of the anovo
+#------------------------------
+#performAnova <- function(createDataFrame)  {
+  
+#one.way <-aov(Genotype~EyeSize)
+#return(summary(one.way))
+#}
+#performAnova()
+
+###############################
+#FUNCTION: graphData
+# purpose:
+# input:
+# output:
+#------------------------------
+graphData <- function(data)  {
+  
+ 
+  
+
+  p1 <- ggplot(data=data, aes(x=Genotype, y=EyeSize)) + geom_point(color="white" , fill="purple", size=0.2) +
+  stat_boxplot()
+  
+  
+  
+  return(print(p1))
+  
+}
+
+graphData(data)
+
+ #Global Variables------------
+ 
+ 
+ 
+ #Program Body----------------
+ 
+data<- createDataframe()
+print(data)
+graphData(data)
+```
+

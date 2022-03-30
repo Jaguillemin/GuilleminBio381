@@ -1,0 +1,80 @@
+---
+title: "Homework 10"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+
+
+###############################
+#FUNCTION: zero_counter
+# purpose:to count the zeros in a vector
+# input:a vector
+# output:
+#------------------------------
+# zero_counter <- function(counter=0) { 
+# 
+# v<-round(runif(min=0, max=5, n=30))
+# 
+# for(i in seq_along(v)){ 
+# if(v[i]== 0){counter<-counter+1} 
+#   
+#   return(counter)
+# }
+# 
+# 
+# 
+# 
+# 
+# v<-round(runif(min=0, max=5, n=30))
+# print(v)
+# counter<-0
+# for(i in seq_along(v)){ 
+# if(v[i]== 0){counter<-counter+1} 
+#   
+# }
+# print(counter)
+# 
+# 
+# counter<-v[==0] +1
+# print(counter)
+```
+
+
+```{r}
+###############################
+#FUNCTION: product
+# purpose:
+# input:
+# output:
+#------------------------------
+# product <- function(xVar=10, yVar=3)  {
+# m<- matrix(nrow=3, ncol=10)
+# for( i in 1:nrow(m))
+#   
+# }
+
+
+
+```
+
+
+
+```{r}
+# library(tidyverse)
+# site1<- rnorm(n=10, mean= 25)
+# site2<- rnorm(n=10, mean=5)
+# site3<- rnorm(n=10, mean=50)
+# 
+# df <-data.frame(site1=site1,site2=site2,site3=site3) 
+# print(df)
+# long_df<-pivot_longer(cols=site1:site2:site3, names_to="group", values_to="values")
+
+
+
+
+```

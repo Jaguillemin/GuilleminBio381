@@ -32,9 +32,10 @@ long_df <- eye_size_df %>%
 
 head(long_df)
 
-one.way <-aov(EyeSize ~ Genotype, data= long_df)
+c_df<-chisq.test(eye_size_df$Nulleyesize,eye_size_df$WTeyesize, correct=FALSE)
+summary(c_df) 
 
-summary(one.way) 
+#p-value 0.2372
 
 p1 <- ggplot(data=long_df, aes(x=Genotype, y=EyeSize)) + geom_point(color="white" , fill="purple", size=0.2) +
   stat_boxplot()

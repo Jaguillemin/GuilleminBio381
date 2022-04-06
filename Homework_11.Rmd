@@ -1,0 +1,89 @@
+---
+title: "Homework_11"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#```{r}
+
+
+library(tidyverse)
+
+###############################
+#FUNCTION: chi.Analysis
+# purpose: To perform a chi square analysis 
+# input: 2 long df
+# output:
+#------------------------------
+chi.Analysis <- function(data=NULL)  {
+  if(is.null(data)) { x_var <- runif(10)
+               y_var <- runif(10)
+               d <- data.frame(x_var,y_var)
+  
+  }
+  
+  c_df<-chisq.test(data$Left.eye,data$Right.eye, correct=FALSE)
+.<-summary(c_df)
+return(.)
+}
+
+
+
+
+#--------------------------------------------
+# Global variables
+file_folder <- "RandomFiles/"
+file_out <- "StatsSummary.csv"
+file_names <- list.files(path=file_folder)
+#--------------------------------------------
+
+
+
+#stats_out <- data.frame(ID, #file name, column with NA)
+
+# batch process by looping through individual files
+for (i in seq_along(file_names)) {
+  data <- read.csv(file=paste(file_folder,file_names[i],sep=""),
+                     sep=",",
+                     header=TRUE) # read in next data file
+  
+  #FIX ME d_clean <- data[data!= "na"] # get clean cases
+  print(d_clean)
+  
+} 
+#   #       pivot_longer(cols=Lft.eye:Right.eye, names_to="eye" , values_to= "EyeSize")
+#   # print(long_df)
+# 
+# .<-chi.Analysis(d_clean)
+# 
+# 
+# stats_out[i, #pval col] <-unlist(.)
+# #   . <- ggplot(data=long_df, aes(x=eye , y=EyeSize)) + geom_point(color="white" , fill="purple", size=0.2) +
+# #   stat_boxplot() 
+# # print(.) 
+#   
+# }
+# # set up output file and incorporate time stamp and minimal metadata
+#   write.table(cat("# Summary stats for ",
+#                     "batch processing of regression models","\n",
+#                     "# timestamp: ",as.character(Sys.time()),"\n",
+#                     "# JAG","\n",
+#                     "# ------------------------", "\n",
+#                     "\n",
+#                     file=file_out,
+#                     row.names="",
+#                     col.names="",
+#                     sep=""))
+#   
+# # now add the data frame
+#   write.table(x=stats_out,
+#               file=file_out,
+#               row.names=FALSE,
+#               col.names=TRUE,
+#               sep=",",
+#               append=FALSE)
+
+#```

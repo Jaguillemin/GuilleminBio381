@@ -78,3 +78,5 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 ```
+
+#SLope or pval histogram needs to be added

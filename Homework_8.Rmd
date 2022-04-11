@@ -7,7 +7,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-
+#This is an example of how the data would normally look.
 ```{r}
 library(tidyverse)
 library(ggplot2)
@@ -28,19 +28,61 @@ eye_size_df <- data.frame(WTeyesize = wt_e , Nulleyesize = null_e)
 str(eye_size_df)
 
 long_df <- eye_size_df %>%
-      pivot_longer(cols=WTeyesize:Nulleyesize, names_to= "Genotype" , values_to= "EyeSize") 
+      pivot_longer(cols=WTeyesize:Nulleyesize, names_to= "Genotype" , values_to= "EyeSize")
 
 head(long_df)
 
 c_df<-chisq.test(eye_size_df$Nulleyesize,eye_size_df$WTeyesize, correct=FALSE)
-summary(c_df) 
+summary(c_df)
+print(c_df)
 
-#p-value 0.2372
+#p-value1: 0.2372, p-value2:0., p-value3:
 
 p1 <- ggplot(data=long_df, aes(x=Genotype, y=EyeSize)) + geom_point(color="white" , fill="purple", size=0.2) +
   stat_boxplot()
 
 print(p1)
+
+
+```
+
+#Here we begin to adjust the mean
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+library(MASS)
+library(dplyr)
+
+# Example data set of Eye- Diameter at 72hpf
+wt_e <- rnorm(n=30 , mean=250 , sd=50)
+
+
+null_e <-rnorm( n=30 , mean=240 , sd=50)
+
+
+
+
+eye_size_df <- data.frame(WTeyesize = wt_e , Nulleyesize = null_e)
+
+str(eye_size_df)
+
+long_df <- eye_size_df %>%
+      pivot_longer(cols=WTeyesize:Nulleyesize, names_to= "Genotype" , values_to= "EyeSize")
+
+head(long_df)
+
+c_df<-chisq.test(eye_size_df$Nulleyesize,eye_size_df$WTeyesize, correct=FALSE)
+summary(c_df)
+print(c_df)
+#p-value 
+
+p1 <- ggplot(data=long_df, aes(x=Genotype, y=EyeSize)) + geom_point(color="white" , fill="purple", size=0.2) +
+  stat_boxplot()
+
+print(p1)
+
+
 
 
 ```

@@ -36,35 +36,30 @@ createDataframe <- function(size=30, meanWT=290 , meanN= 240, sd=50 )
 eye_size_df <- data.frame (WTeyesize = rnorm(n=size, mean=meanWT, sd=sd),
   Nulleyesize = rnorm(n=size, mean=meanN, sd=sd))
 
-   
-
-
 long_df <- eye_size_df %>%
-      pivot_longer(cols=WTeyesize:Nulleyesize, names_to= "Genotype" , values_to= "EyeSize")
-return(long_df)
+      pivot_longer(cols=WTeyesize:Nulleyesize, names_to= "Genotype" , values_to= "EyeSize") 
+
 
 }
  
  data<-createDataframe()
  
 ###############################
-#FUNCTION: performAnova
+#FUNCTION: chi2
 # purpose: To perform a statistical analysis on the data
 # input: an x variable and y variable 
-# output : the summary of the anovo
+# output : the summary of the chi square pvalue
 #------------------------------
-#performAnova <- function(createDataFrame)  {
-  
-#one.way <-aov(Genotype~EyeSize)
-#return(summary(one.way))
-#}
-#performAnova()
+chi2 <- function(createDataFrame)  {
+  c_df<-chisq.test(eye_size_df$Nulleyesize,eye_size_df$WTeyesize, correct=FALSE)
+summary(c_df)
 
+}
 ###############################
 #FUNCTION: graphData
-# purpose:
-# input:
-# output:
+# purpose: To visualize the differences in eyesize
+# input:long eyesize dataframe
+# output: abox plot of the two catgories of eye
 #------------------------------
 graphData <- function(data)  {
   
@@ -91,5 +86,6 @@ graphData(data)
 data<- createDataframe()
 print(data)
 graphData(data)
+
 ```
 

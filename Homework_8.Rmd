@@ -15,10 +15,10 @@ library(MASS)
 library(dplyr)
 
 # Example data set of Eye- Diameter at 72hpf
-wt_e <- rnorm(n=30 , mean=290 , sd=50)
+wt_e <- rnorm(n=30, mean=290 , sd=50)
 
 
-null_e <-rnorm( n=30 , mean=240 , sd=50)
+null_e <-rnorm( n=30 , mean=220 , sd=50)
 
 
 
@@ -35,6 +35,7 @@ head(long_df)
 c_df<-chisq.test(eye_size_df$Nulleyesize,eye_size_df$WTeyesize, correct=FALSE)
 summary(c_df)
 print(c_df)
+
 
 #p-value1: 0.2372, p-value2:0., p-value3:
 
@@ -46,7 +47,7 @@ print(p1)
 
 ```
 
-#Here we begin to adjust the mean
+#Here we begin to adjust the sample size
 
 ```{r}
 library(tidyverse)
@@ -55,10 +56,10 @@ library(MASS)
 library(dplyr)
 
 # Example data set of Eye- Diameter at 72hpf
-wt_e <- rnorm(n=30 , mean=250 , sd=50)
+wt_e <- rnorm(n=500 , mean=290 , sd=50)
 
 
-null_e <-rnorm( n=30 , mean=240 , sd=50)
+null_e <-rnorm( n=500 , mean=240 , sd=50)
 
 
 
@@ -75,7 +76,8 @@ head(long_df)
 c_df<-chisq.test(eye_size_df$Nulleyesize,eye_size_df$WTeyesize, correct=FALSE)
 summary(c_df)
 print(c_df)
-#p-value 
+# 15 p-value:0.2344 
+#500 p-value:0.2396
 
 p1 <- ggplot(data=long_df, aes(x=Genotype, y=EyeSize)) + geom_point(color="white" , fill="purple", size=0.2) +
   stat_boxplot()

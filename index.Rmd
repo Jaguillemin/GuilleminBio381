@@ -35,6 +35,7 @@ Homeworks:
 
 [Homework #10](Homework_10.html)
 
-[Homework #11](Homewor_11.html)
+[Homework #11](Homework_11.html)
 
+[Homework #12](Homework_12.html)
 

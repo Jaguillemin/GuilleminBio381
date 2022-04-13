@@ -83,11 +83,12 @@ remix_yall <- function(data)  {
  means<-tapply(shuffle_data$values,shuffle_data$group,mean)
  
  list<-list(means,shuffle_data)
-return(list)
+.<-as.vector(unlist(means,shuffle_data))
+return(.)
  
 } 
 remix_yall(long_df)
-
+is.vector(remix_yall(long_df))
 ###############################
 #FUNCTION: sim_100
 # purpose:
@@ -95,14 +96,15 @@ remix_yall(long_df)
 # output:
 #------------------------------
 sim_100 <- function(data)  {
- 
    s<-(1:100)
-  for(i in 1:s){
-    remix_yall(data)
-sim_data<- data.frame(i)
-}}
+  for(i in seq_along(s)){
+.<-remix_yall(data)
+sim_data<- data.frame(i,.[1], .[2], .[3])
+ sim_data[nrow(sim_data) + 1,] = c(i,.[1], .[2], .[3]) }
+ return(sim_data)
+   }
 
-
+sim_100(long_df)
 ```
 
 #SLope or pval histogram needs to be added

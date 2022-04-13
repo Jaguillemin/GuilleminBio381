@@ -50,8 +50,8 @@ long_df <- eye_size_df %>%
 # input: an x variable and y variable 
 # output : the summary of the chi square pvalue
 #------------------------------
-chi2 <- function(createDataFrame)  {
-  c_df<-chisq.test(eye_size_df$Nulleyesize,eye_size_df$WTeyesize, correct=FALSE)
+chi2 <- function(data, null_col="Nulleyesize" , wt_col="WTeyesize")  {
+  c_df<-chisq.test(data$null_col, data$wt_col, correct=FALSE)
 summary(c_df)
 
 }
@@ -85,6 +85,7 @@ graphData(data)
  
 data<- createDataframe()
 print(data)
+#chi2(data)
 graphData(data)
 
 ```

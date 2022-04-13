@@ -1,0 +1,42 @@
+---
+title: "Homework_12"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(ggplot2)
+library(tidyverse)
+data("ToothGrowth")
+print(ToothGrowth)
+theme_set(theme_bw())
+
+# p1 <- ggplot(ToothGrowth, aes(x=dose, y=len)) + 
+#   geom_point(aes(col=supp)) + 
+#   labs(subtitle="Dose vs Toothlength", 
+#        y="Toothlength", 
+#        x="Dose", 
+#        title="Scatterplot of ToothGrowth", 
+#        caption = "Source: ToothGrowth")
+# print(p1)
+
+ToothGrowth$DoseCat<- as.factor(ToothGrowth$dose)
+
+p2<-ggplot(ToothGrowth, aes(x=DoseCat, y=len, fill=dose)) +
+    geom_violin() +
+    theme(
+      legend.position="none",
+      plot.title = element_text(size=11)
+    ) +
+    ggtitle("Dosage of Calcium vs Tooth Length") +
+    xlab("Dose") +ylab("ToothLength") + geom_dotplot(binaxis='y', stackdir='center', dotsize=1.5, fill="orange", color= "black")
+print(p2)
+#this saves a high quality figure
+
+#ggsave("testplot.tiff",device="tiff", width=5,height=5, dpi=300)
+
+
+```

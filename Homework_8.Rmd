@@ -7,7 +7,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-#This is an example of how the data would normally look.
+###This is an example of how the data would normally look.
 ```{r}
 library(tidyverse)
 library(ggplot2)
@@ -15,10 +15,10 @@ library(MASS)
 library(dplyr)
 
 # Example data set of Eye- Diameter at 72hpf
-wt_e <- rnorm(n=30, mean=290 , sd=50)
+wt_e <- rnorm(n=100, mean=290 , sd=50)
 
 
-null_e <-rnorm( n=30 , mean=220 , sd=50)
+null_e <-rnorm( n=100, mean=220 , sd=50)
 
 
 
@@ -32,12 +32,11 @@ long_df <- eye_size_df %>%
 
 head(long_df)
 
-c_df<-chisq.test(eye_size_df$Nulleyesize,eye_size_df$WTeyesize, correct=FALSE)
-summary(c_df)
-print(c_df)
+test<-t.test(wt_e,null_e, paired=TRUE)
 
+print(test)
 
-#p-value1: 0.2372, p-value2:0., p-value3:
+#p-value1(n=30): 5.8e-07, p-value(n=50):2.5e-09, p-value(n=100):2.2e-16
 
 p1 <- ggplot(data=long_df, aes(x=Genotype, y=EyeSize)) + geom_point(color="white" , fill="purple", size=0.2) +
   stat_boxplot()
@@ -45,9 +44,17 @@ p1 <- ggplot(data=long_df, aes(x=Genotype, y=EyeSize)) + geom_point(color="white
 print(p1)
 
 
+
+
+
+
+
+
 ```
 
-#Here we begin to adjust the sample size
+#In retinal development the retina is finished being laminated by 72hpf, here we simulate data for a this time point, for organisms with proper lamination, leading to proper eye size (wt), and organisms missing a protein integral to eye development, causing improper lamination, and smaller eye size(null)
+
+###Here we begin to adjust the means
 
 ```{r}
 library(tidyverse)
@@ -56,10 +63,10 @@ library(MASS)
 library(dplyr)
 
 # Example data set of Eye- Diameter at 72hpf
-wt_e <- rnorm(n=500 , mean=290 , sd=50)
+wt_e <- rnorm(n=30 , mean=270 , sd=50)
 
 
-null_e <-rnorm( n=500 , mean=240 , sd=50)
+null_e <-rnorm( n=30 , mean=240 , sd=50)
 
 
 
@@ -73,11 +80,57 @@ long_df <- eye_size_df %>%
 
 head(long_df)
 
-c_df<-chisq.test(eye_size_df$Nulleyesize,eye_size_df$WTeyesize, correct=FALSE)
-summary(c_df)
-print(c_df)
-# 15 p-value:0.2344 
-#500 p-value:0.2396
+test<-t.test(wt_e,null_e, paired=TRUE)
+
+print(test)
+
+#p-value(250-240):0.2558 
+#p-value(260-240):0.07137
+#p-value(270-240):0.006474
+
+p1 <- ggplot(data=long_df, aes(x=Genotype, y=EyeSize)) + geom_point(color="white" , fill="purple", size=0.2) +
+  stat_boxplot()
+
+print(p1)
+
+
+
+
+```
+
+###Here we adjust the sample sizes
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+library(MASS)
+library(dplyr)
+
+# Example data set of Eye- Diameter at 72hpf
+wt_e <- rnorm(n=10 , mean=290 , sd=50)
+
+
+null_e <-rnorm( n=10 , mean=240 , sd=50)
+
+
+
+
+eye_size_df <- data.frame(WTeyesize = wt_e , Nulleyesize = null_e)
+
+str(eye_size_df)
+
+long_df <- eye_size_df %>%
+      pivot_longer(cols=WTeyesize:Nulleyesize, names_to= "Genotype" , values_to= "EyeSize")
+
+head(long_df)
+
+test<-t.test(wt_e,null_e, paired=TRUE)
+
+print(test)
+
+#p-value(5):0.2921-0.2338
+#p-value(10):0.07516-0.001271
+#p-value(15):0.0001277
 
 p1 <- ggplot(data=long_df, aes(x=Genotype, y=EyeSize)) + geom_point(color="white" , fill="purple", size=0.2) +
   stat_boxplot()

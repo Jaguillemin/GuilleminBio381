@@ -33,8 +33,10 @@ knitr::opts_chunk$set(echo = TRUE)
 createDataframe <- function(size=30, meanWT=290 , meanN= 240, sd=50 )
   {
 
-eye_size_df <- data.frame (WTeyesize = rnorm(n=size, mean=meanWT, sd=sd),
-  Nulleyesize = rnorm(n=size, mean=meanN, sd=sd))
+WTeyesize <- rnorm(n=size, mean=meanWT, sd=sd)
+  Nulleyesize <- rnorm(n=size, mean=meanN, sd=sd)
+  
+eye_size_df <- data.frame (WTeyesize,Nulleyesize)
 
 long_df <- eye_size_df %>%
       pivot_longer(cols=WTeyesize:Nulleyesize, names_to= "Genotype" , values_to= "EyeSize") 
@@ -45,26 +47,29 @@ long_df <- eye_size_df %>%
  data<-createDataframe()
  
 ###############################
-#FUNCTION: chi2
+#FUNCTION: test
 # purpose: To perform a statistical analysis on the data
 # input: an x variable and y variable 
 # output : the summary of the chi square pvalue
 #------------------------------
-chi2 <- function(data, null_col="Nulleyesize" , wt_col="WTeyesize")  {
-  c_df<-chisq.test(data$null_col, data$wt_col, correct=FALSE)
-summary(c_df)
+test <- function(x_var=eye_size_df$WTeyesize,y_var=eye_size_df$Nulleyesize)  {
+  WTeyesize <- rnorm(n=100, mean=290 , sd=50)
 
+
+Nulleyesize <-rnorm( n=100, mean=220 , sd=50)
+.<-t.test(WTeyesize,Nulleyesize, paired=TRUE)
+
+.<-print(.)
+return(.)
 }
+ 
 ###############################
 #FUNCTION: graphData
 # purpose: To visualize the differences in eyesize
 # input:long eyesize dataframe
-# output: abox plot of the two catgories of eye
+# output: a box plot of the two catergories of eye
 #------------------------------
 graphData <- function(data)  {
-  
- 
-  
 
   p1 <- ggplot(data=data, aes(x=Genotype, y=EyeSize)) + geom_point(color="white" , fill="purple", size=0.2) +
   stat_boxplot()
@@ -77,6 +82,29 @@ graphData <- function(data)  {
 
 graphData(data)
 
+
+
+
+#ADD NEW FUNCTION HERE
+###############################
+#FUNCTION: graphData
+# purpose: To visualize the differences in eyesize
+# input:long eyesize dataframe
+# output: a box plot of the two catergories of eye
+#------------------------------
+graphData2 <- function(data)  {
+
+  p1 <- ggplot(data=data, aes(x=Genotype, y=EyeSize)) + geom_point(color="white" , fill="purple", size=0.2) +
+  stat_boxplot()
+  
+  
+  
+  return(print(p1))
+  
+}
+
+graphData2(data)
+
  #Global Variables------------
  
  
@@ -85,8 +113,8 @@ graphData(data)
  
 data<- createDataframe()
 print(data)
-#chi2(data)
+test(xvar, y_vae)
 graphData(data)
-
+graphData2
 ```
 

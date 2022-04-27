@@ -23,9 +23,8 @@ for(i in seq_along(v)){
 if(v[i]== 0){counter<-counter+1}}
 
   return(counter) }
-print(counter)
+zero_counter()
 
-print(v)
 
 
 #subsetting option
@@ -44,14 +43,19 @@ length(s[s==0])
 # output:
 #------------------------------
 product <- function(xVar=ncol, yVar=nrow)  {
-  matrix(nrow=3, ncol=10)
-for( i in 1:nrow(m))
-m[,]=3*10
-return(m)
-}
+ m<- matrix(nrow=3, ncol=10)
+for( i in 1:nrow(m)){
+  for(j in 1:ncol(m)){
+m[i,j]<-(i*j)
+}#end of j
+}#end of i
+
+ return(m) }#end of function
 
 product()
-#This isn't exactly what I want, want to call the rows and numbers with names not digits
+
+
+
 ```
 
 
@@ -82,36 +86,33 @@ remix_yall <- function(data)  {
  print(shuffle_data) 
  means<-tapply(shuffle_data$values,shuffle_data$group,mean)
  
- list<-list(means,shuffle_data)
-.<-as.vector(unlist(means,shuffle_data))
+ list<-list(means)
+.<-as.vector(unlist(means))
 return(.)
  
 } 
 remix_yall(long_df)
 is.vector(remix_yall(long_df))
-###############################
-#FUNCTION: sim_100
-# purpose:
-# input:
-# output:
-#-----------------------------
 
 
-sim_data<-data.frame(matrix(nrow=10,ncol=4))
-colnames(sim_data)<-c("i", "site 1 mean", "site 2 mean", "site 3 mean")
-sim_100 <- function(data)  {
-   s<-(1:100)
-  for(i in seq_along(s)){
-.<-remix_yall(data)
-sim_data<-rbind( sim_data, data.frame(i, .[1], .[2], .[3]))
-#sim_data<- data.frame(i,.[1], .[2], .[3])
-  
+
+
+#Body of program
+n_sim<-100
+x_sim<-rep(NA,n_sim)
+print(x_sim)
+s1<-rep(NA)
+s2<-rep(NA)
+s3<-rep(NA)
+df_100<- data.frame(x_sim, s1,s2,s3)
+print(df_100)
+for(i in seq_len(n_sim)){ df_100[i,2:4]<-remix_yall(long_df)
+df_100[i,1]<- i
 }
- 
- return(sim_data)
-   }
 
-sim_100(long_df)
+ 
+
+print(df_100)
 ```
 
 #SLope or pval histogram needs to be added

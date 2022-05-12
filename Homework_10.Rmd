@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 #FUNCTION: zero_counter
 #purpose:to count the zeros in a vector
 #input:a vector
-#output:
+#output: an integer, which is the amount of zeros there are in the the vector randomly created 
 #------------------------------
 zero_counter <- function(counter=0) {
 v<-round(runif(min=0, max=5, n=30))
@@ -38,9 +38,9 @@ length(s[s==0])
 ```{r}
 ###############################
 #FUNCTION: product
-# purpose:
-# input:
-# output:
+# purpose: to take the values of a position in a matrix and multiply them, then allow them to fill that position
+# input:column number and row number
+# output: matrix with multiplication of row and column output
 #------------------------------
 product <- function(xVar=ncol, yVar=nrow)  {
  m<- matrix(nrow=3, ncol=10)
@@ -63,7 +63,8 @@ product()
 ```{r}
 
 library(tidyverse)
-site1<- round(rnorm(n=10, mean=25))
+set.seed(5)
+site1<-round(rnorm(n=10, mean=25))
 site2<- round(rnorm(n=10, mean=5))
 site3<- round(rnorm(n=10, mean=50))
 
@@ -77,9 +78,9 @@ print(long_df)
  class(means)
 ###############################
 #FUNCTION: remix_yall
-# purpose:
-# input:
-# output:
+# purpose: to mix the values of site data (response variables) and then create a vector of the means for each group
+# input: A data frame with 2 columns, one group and one response variable
+# output: a vector of means after shuffling
 #------------------------------
 remix_yall <- function(data)  {
   shuffle_data<- transform(data,values=sample(values))
@@ -94,7 +95,52 @@ return(.)
 remix_yall(long_df)
 is.vector(remix_yall(long_df))
 
+###############################
+#FUNCTION: med
+# purpose:To find the median of the shuffled means
+# input:the three sites of data after being shuffled 
+# output:the median of the remixed means
+#------------------------------
+med <- function(data)  {
 
+shuffle_data2 <- transform(data,values=sample(values))
+ .<-print(shuffle_data2)
+
+  
+means<-tapply(shuffle_data2$values,shuffle_data2$group,median)
+print(means)
+list<-list(means)
+.<-as.vector(unlist(means))
+return(.)
+
+}
+med(long_df)
+is.vector(med(long_df))
+
+
+###############################
+#FUNCTION: pval
+# purpose:To find the pvalue of the three shuffled sites means
+# input:the three sites of data after being shuffled 
+# output:the pvalue of the remixed means
+#------------------------------
+pval<- function(data)  {
+
+shuffle_data3 <- transform(data,values=sample(values))
+ .<-print(shuffle_data3)
+means<-tapply(shuffle_data3$values,shuffle_data3$group)
+
+
+three_way<- aov(values~group , .)
+.<-summary(three_way)[[1]][1,5]
+#.<-print(.)
+
+return(.)
+
+
+}
+pval(long_df)
+str(pval(long_df))
 
 
 #Body of program
@@ -104,16 +150,27 @@ print(x_sim)
 s1<-rep(NA)
 s2<-rep(NA)
 s3<-rep(NA)
-df_100<- data.frame(x_sim, s1,s2,s3)
+p<-rep(NA)
+
+df_100<- data.frame(x_sim, s1,s2,s3,p)
 print(df_100)
 for(i in seq_len(n_sim)){ df_100[i,2:4]<-remix_yall(long_df)
 df_100[i,1]<- i
+df_100[i,5]<-pval(long_df)
 }
 
- 
 
-print(df_100)
+
+#print(df_100)
+
+
+
+long_histo<-pivot_longer(df_100,cols=s1:s2:s3, names_to="sites", values_to="means")
+print(long_histo)
+#qplot(means, data = long_histo, geom = "histogram", fill=sites)
+ggplot(long_histo, aes(x=means, fill=sites, color=sites)) + geom_histogram( position="identity", alpha=0.5)+ theme(legend.position="top")
+#There is much more variance between the means from their original values, the means are nearer to equal in the higher counts
+qplot(x=df_100$p,fill=I("purple"),color=I("black"))
+#the randomization of the data causes increase in significance, and it does seem persistently random, this could be due to the fact values are interchanged form each group randomly
+
 ```
-
-#SLope or pval histogram needs to be added
-

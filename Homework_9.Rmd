@@ -21,6 +21,9 @@ knitr::opts_chunk$set(echo = TRUE)
  
  #Intialize------------------
  library(tidyverse)
+library(wesanderson)
+library(ggthemes)
+library(patchwork)
  #set.seed(100)
  
  #Load Functions--------------
@@ -46,11 +49,12 @@ long_df <- eye_size_df %>%
  
  data<-createDataframe()
  
+
 ###############################
-#FUNCTION: test
+#FUNCTION:t- test
 # purpose: To perform a statistical analysis on the data
-# input: an x variable and y variable 
-# output : the summary of the chi square pvalue
+# input: an x variable and y variable
+# output : the summary of the t-test 
 #------------------------------
 test <- function(x_var=eye_size_df$WTeyesize,y_var=eye_size_df$Nulleyesize)  {
   WTeyesize <- rnorm(n=100, mean=290 , sd=50)
@@ -84,22 +88,21 @@ graphData(data)
 
 
 
-
-#ADD NEW FUNCTION HERE
+#Second function here!
 ###############################
-#FUNCTION: graphData
+#FUNCTION: graphData2
 # purpose: To visualize the differences in eyesize
 # input:long eyesize dataframe
-# output: a box plot of the two catergories of eye
+# output: a colored violin plot of the two categories of eyesize, with the t-test value on graph
 #------------------------------
 graphData2 <- function(data)  {
-
-  p1 <- ggplot(data=data, aes(x=Genotype, y=EyeSize)) + geom_point(color="white" , fill="purple", size=0.2) +
-  stat_boxplot()
+my_cols<-wes_palettes$IsleofDogs1[1:2]
+  p2 <- ggplot(data=data, aes(x=Genotype, y=EyeSize, fill=Genotype))+geom_violin()+scale_fill_manual(values=my_cols)+ annotate("text", x = 1.19, y = 400, label = "p-value should be less the 0.05", size=2)
+  
+   
   
   
-  
-  return(print(p1))
+  return(print(p2))
   
 }
 
@@ -113,8 +116,9 @@ graphData2(data)
  
 data<- createDataframe()
 print(data)
-test(xvar, y_vae)
-graphData(data)
-graphData2
+test(x_var, y_var)
+g1<-graphData(data)
+g2<-graphData2(data)
+g1+g2
 ```
 

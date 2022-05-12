@@ -10,80 +10,84 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 
 
-# library(tidyverse)
-# 
-# ###############################
-# #FUNCTION: chi.Analysis
-# # purpose: To perform a chi square analysis 
-# # input: 2 long df
-# # output:
-# #------------------------------
-# #chi.Analysis <- function(data=NULL)  {
-#  # if(is.null(data)) { var1 <- runif(10)
-# #               var2 <- runif(10)
-# #               d <- data.frame(var1,var2)
-#   
-#  # }
-#   
-# #  c_df<-chisq.test(data$ [1,],data$ [2,], correct=FALSE)
-# #.<-print(c_df)
-# #return(.)
-# #}
-# 
-# #chi.Analysis()
-# 
-# 
-# #--------------------------------------------
-# # Global variables
-# file_folder <- "RandomFiles/"
-# file_out <- "StatsSummary.csv"
-# file_names <- list.files(path=file_folder)
-# #--------------------------------------------
-# 
-# 
-# #stats_out <- data.frame(ID, #file name, column with NA)
-# 
-# # batch process by looping through individual files
-# # for (i in seq_along(file_names)) {
-# #   data <- read.csv(file=paste(file_folder,file_names[i],sep=""),
-# #                      sep=",",
-# #                      header=TRUE) # read in next data file
-# # 
-# #  # glimpse(data)
-# #  # summary(data)
-# # #print(data)
-# # }
-# 
-# d_clean <- data[complete.cases(data),] # get clean cases
-# 
-# #.<-chi.Analysis(d_clean)
-# 
-# 
-# #stats_out[i, #pval col] <-unlist(.)
-# #   . <- ggplot(data=long_df, aes(x=eye , y=EyeSize)) + geom_point(color="white" , fill="purple", size=0.2) +
-# # stat_boxplot()
-# # print(.)
-# 
-#  #}
-# 
-# #set up output file and incorporate time stamp and minimal metadata
-#    write.table(cat("# Summary stats for ",
-#                      "batch processing of regression models","\n",
-#                      "# timestamp: ",as.character(Sys.time()),"\n",
-#                      "# JAG","\n",
-#                      "# ------------------------", "\n",
-#                      "\n",
-#                      file=file_out,
-#                      row.names="",
-#                      col.names="",
-#                      sep=""))
-# 
-# # now add the data frame
-#    write.table(x=stats_out,
-#                file=file_out,
-#                row.names=FALSE,
-#                col.names=TRUE,
-#                sep=",",
-#                append=FALSE)
+library(tidyverse)
+
+###############################
+#FUNCTION: t_test
+# purpose: to take the values of two different numbers, in our case it will be eye sizes, and perform a t-test
+# input: a data file which will consist of 2 columns (left and right eyesize) and compare a t.test across them
+# output: the p-value of this test
+#------------------------------
+t_test <- function(d=NULL)  {
+  if(is.null(d)) {
+     x_var<-rnorm(10)
+     y_var<-rnorm(10)
+     d<-data.frame(x_var,y_var)}
+   
+.<- t.test(data=d , d[,1] , d[,2], paired=TRUE)
+
+.<-print(.$p.value)
+return(.)
+}
+t_test()
+
+
+#--------------------------------------------
+# Global variables
+file_folder <- "RandomFiles/"
+file_out <- "StatsSummary.csv"
+file_names <- list.files(path=file_folder)
+#--------------------------------------------
+
+ID<-seq_along(file_names)#column  with the file number
+pval<-rep(NA)#column to be filled with NA
+stats_out <- data.frame(ID, file_names, pval)# make data frame
+
+print(stats_out)
+# batch process by looping through individual files
+for (i in seq_along(file_names)) {
+  data <- read.csv(file=paste(file_folder,file_names[i],sep=""),
+                      sep=",",
+                      header=TRUE) # read in next data file
+
+ glimpse(data)
+ summary(data)
+ print(data)
+
+
+d_clean <- data[complete.cases(data),] # get clean cases
+
+.<-t_test(d_clean)
+print(d_clean)
+ stats_out[i,3]<-unlist(.) #this adds the p value and run to the dataframe under the section I created which was filled with NA
+}
+
+
+ 
+
+#set up output file and incorporate time stamp and minimal metadata
+   write.table(cat("# Summary stats for ",
+                     "batch processing of regression models","\n",
+                     "# timestamp: ",as.character(Sys.time()),"\n",
+                     "# JAG","\n",
+                     "# ------------------------", "\n",
+                     "\n",
+                     file=file_out,
+                     row.names="",
+                     col.names="",
+                     sep=""))
+
+# now add the data frame
+   write.table(x=stats_out,
+               file=file_out,
+               row.names=FALSE,
+               col.names=TRUE,
+               sep=",",
+               append=FALSE)
 
 ```
+
+![Alt text](/Users/jguil/OneDrive - University of Vermont/Desktop/GuilleminBio381/Screenshot 2022-05-07 151900.png)
+
+
+

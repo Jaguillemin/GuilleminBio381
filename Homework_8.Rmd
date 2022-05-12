@@ -7,7 +7,12 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-###This is an example of how the data would normally look.
+
+
+## This is an example of how the data would normally look.
+
+
+This includes eyesize estimations from Stergas et al. 
 ```{r}
 library(tidyverse)
 library(ggplot2)
@@ -52,9 +57,12 @@ print(p1)
 
 ```
 
-#In retinal development the retina is finished being laminated by 72hpf, here we simulate data for a this time point, for organisms with proper lamination, leading to proper eye size (wt), and organisms missing a protein integral to eye development, causing improper lamination, and smaller eye size(null)
 
-###Here we begin to adjust the means
+In retinal development the retina is finished being laminated by 72hpf, here we simulate data for a this time point, for organisms with proper lamination, leading to proper eye size (wt), and organisms missing a protein integral to eye development, causing improper lamination, and smaller eye size(null)
+
+
+## Here we begin to adjust the means
+
 
 ```{r}
 library(tidyverse)
@@ -98,7 +106,11 @@ print(p1)
 
 ```
 
-###Here we adjust the sample sizes
+ Adjusting the mean of each group to be values closer to eachother causes the groups to lose significant difference, moving up in groups of 10 we find that the means need to be 30 integers apart.
+
+
+## Here we adjust the sample sizes
+
 
 ```{r}
 library(tidyverse)
@@ -141,3 +153,6 @@ print(p1)
 
 
 ```
+
+
+we find that the smallest sample size for an appropriate p-value would be a sample of 10 fish each, anything lower allows for significance to be lost

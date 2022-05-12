@@ -1,5 +1,5 @@
-# Summary stats for batch processing of regression models
-# timestamp: 2022-04-13 14:23:54
-# JAG
-# ------------------------
-
+"ID","file_names","pval"
+1,"48 MO A.csv",0.35432826087531
+2,"48 MO B.csv",0.454128578901293
+3,"48 UIC A.csv",0.604490913549067
+4,"48 UIC B.csv",0.419272519323703
